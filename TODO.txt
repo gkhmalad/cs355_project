@@ -1,4 +1,10 @@
-CHOOSE LANGUAGE
-IDENTIFY STRUCTURE
-COME UP WITH MATERIALS
-UPDATE THIS DOC
+Decide on what to use, SHA3 or BLAKE2b
+
+Understand how to achieve secure communication
+
+Come up with the stack for secure communication
+
+Implement the method for hashing a file full of passwords
+    Create a sample file with "passwords" to test
+
+Implement the method for secure communication
