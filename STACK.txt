@@ -1,1 +1,2 @@
-PYTHON
+Primary Language:    Python
+Hash Function:       BLAKE2b or SHA3 (from the "hashlib" library for python)
