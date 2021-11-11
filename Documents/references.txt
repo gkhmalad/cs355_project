@@ -1,0 +1,6 @@
+Python hashlib for secure hashing algorithms
+https://docs.python.org/3/library/hashlib.html#simple-hashing
+
+BLAKE2 crypto hash function
+https://www.blake2.net/
+
