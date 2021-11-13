@@ -4,3 +4,6 @@ https://docs.python.org/3/library/hashlib.html#simple-hashing
 BLAKE2 crypto hash function
 https://www.blake2.net/
 
+Some Articles for DH Key Exchange in Python
+https://ahmed-tahir.medium.com/diffie-hellman-key-exchange-algorithm-in-python-97c2abc855a5
+https://medium.com/@sadatnazrul/diffie-hellman-key-exchange-explained-python-8d67c378701c
