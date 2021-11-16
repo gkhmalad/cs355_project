@@ -4,7 +4,7 @@ legalChars = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', '
 
 f = open('passwords.txt', 'w')
 
-for _ in range(100):
+for _ in range(263156):
 
     password = ''
     passLen = random.randint(12,16)
@@ -14,6 +14,4 @@ for _ in range(100):
 
     f.write(str(password) + "\n")
         
-
-
 f.close()
