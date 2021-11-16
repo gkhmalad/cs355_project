@@ -1,5 +1,3 @@
-Decide on what to use, SHA3 or BLAKE2b
-
 Understand how to achieve secure communication
 
 Come up with the stack for secure communication
