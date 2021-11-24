@@ -14,3 +14,6 @@ https://stackoverflow.com/questions/8539441/private-public-encryption-in-python-
 
 Implementation of Diffie-hellman
 https://github.com/amiralis/pyDH/blob/master/pyDH/pyDH.py
+
+El Gamal Implementation
+https://www.codespeedy.com/elgamal-encryption-algorithm-in-python/
