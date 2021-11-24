@@ -11,3 +11,6 @@ https://medium.com/@sadatnazrul/diffie-hellman-key-exchange-explained-python-8d6
 
 Some library suggestions
 https://stackoverflow.com/questions/8539441/private-public-encryption-in-python-with-standard-library
+
+Implementation of Diffie-hellman
+https://github.com/amiralis/pyDH/blob/master/pyDH/pyDH.py
