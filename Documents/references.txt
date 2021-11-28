@@ -17,3 +17,4 @@ https://github.com/amiralis/pyDH/blob/master/pyDH/pyDH.py
 
 El Gamal Implementation
 https://www.codespeedy.com/elgamal-encryption-algorithm-in-python/
+https://www.geeksforgeeks.org/elgamal-encryption-algorithm/
