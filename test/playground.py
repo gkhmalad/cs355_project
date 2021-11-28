@@ -15,9 +15,9 @@ s = 13
 
 # bobs public key
 publicB = pow(a, r, modulo)
-# alices secret key
+# alices public key
 publicA = pow(a, s, modulo)
-
+print(publicB)
 
 # shared key bob
 bobSharedKey = pow(publicA, r, modulo)
