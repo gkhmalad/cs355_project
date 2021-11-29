@@ -1,7 +1,8 @@
 import hashlib
 
-# h = hashlib.sha3_512(b"Nobody inspects the spammish repetition")
+# rb mode reads in binary, omits \n and such
+with open("passwords.txt", 'rb') as file:
+        data = file.read()
 
-# print(h.hexdigest())
-
-# print('Hello')
+h =  hashlib.sha3_512(data)
+print(h.hexdigest())
