@@ -5,7 +5,7 @@ p = 0xFFFFFFFFFFFFFFFFC90FDAA22168C234C4C6628B80DC1CD129024E088A67CC74020BBEA63B
 
 g = 2
 
-# Generating a key
+# Generating a key 128 or 80
 def keygen():
 
     return int(binascii.hexlify(os.urandom(32)), base=16)

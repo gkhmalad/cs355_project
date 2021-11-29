@@ -1,8 +1,8 @@
-Understand how to achieve secure communication
+Transfer the encryption to single element (no array)
 
-Come up with the stack for secure communication
+Do not send the digest for direct comparison
+    calculate f(digest) which if manipulated by the other party with their own digest returns identifiable equivalence of the digests
 
-Implement the method for hashing a file full of passwords
-    Create a sample file with "passwords" to test
+MAC or Signature (hash of the ciphertext)
 
-Implement the method for secure communication
+Check libraries to generate large primes for p
