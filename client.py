@@ -36,8 +36,13 @@ def receive():
                         c2 = int(cipherArray[3])
                         signature = cipherArray[4]
                         sender = cipherArray[1]
-                        plainmsg = f'{sender} > {elgamal.decrypt(c1,c2,sKey)}' 
-                        print(plainmsg)
+
+                        if(elgamal.signature_validator(c1,c2,signature, sKey)):
+                            print('message validated!')
+                            plainmsg = f'{sender} > {elgamal.decrypt(c1,c2,sKey)}' 
+                            print(plainmsg)
+                        else:
+                            print("Message has been tampered with!")
                     else:
                         print(message)
         except:

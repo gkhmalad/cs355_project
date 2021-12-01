@@ -1,5 +1,6 @@
 import hashlib
 
+# Generates a digest of the passwords file
 def file_digest(fpath):
 
     # rb mode reads in binary, omits \n and such

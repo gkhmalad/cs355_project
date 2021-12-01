@@ -1,3 +1,4 @@
+from io import RawIOBase
 import os
 import binascii
 import hashlib
@@ -58,6 +59,14 @@ def sign(sharedSecret, cipher):
 
     return hmac.new(str(sharedSecret).encode(), str(cipher).encode(), hashlib.sha3_256).hexdigest()
 
+def signature_validator(c1, c2, signature, secretKey):
+
+    # Recalculate signature with own private key
+    sharedSecret = pow(c1, secretKey, p)
+    newSignature = hmac.new(str(sharedSecret).encode(), str(c2).encode(), hashlib.sha3_256).hexdigest()
+
+    return newSignature == signature
+
 
 # def main():
 #     print("\n========================================================")
@@ -86,10 +95,12 @@ def sign(sharedSecret, cipher):
 #     # Alice receives c1 and c2 and decrypts them with her secret key
 #     m = decrypt(c1, c2, x)
 
+#     print(signature_validator(c1,c2,signature,x))
+
 #     print("\nAlice's received message after decryption:\n" + m)
 #     print("\nComparing the inputted and outputted messages: " + str(m == message))
 
 
 
-# if __name__=="__main__":
-#     main()
+if __name__=="__main__":
+    main()

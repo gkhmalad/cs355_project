@@ -1,5 +1,6 @@
 import json
 
+# Getting the public key of the other person
 def getPublicKey(requesterName, filename='./database.json'):
 
 	json_data=open(filename)
@@ -7,28 +8,22 @@ def getPublicKey(requesterName, filename='./database.json'):
 	json_data.close()
 
 	for client in data['publicKeys']:
-
 		if client['client'] != requesterName:
-
 			return client['publicKey']
 
+# Database initiation on every server run
 def initDB(filename='./database.json'):
 
 	data = {"publicKeys":[]}
-
 	json_object = json.dumps(data)
-
 	with open(filename, "w") as outfile:
 		outfile.write(json_object)
 
+# Appending to the json file
 def write_json(new_data, filename='./database.json'):
 
 	with open(filename,'r+') as file:
-		# First we load existing data into a dict.
 		file_data = json.load(file)
-		# Join new_data with file_data inside emp_details
 		file_data["publicKeys"].append(new_data)
-		# Sets file's current position at offset.
 		file.seek(0)
-		# convert back to json.
 		json.dump(file_data, file, indent = 4)
