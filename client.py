@@ -5,22 +5,28 @@ import jsonDB
 
 nickname = input("Nickname: ")
 client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-#connect to the server
-client.connect(('127.0.0.1', 55555))
 
 # Client's key and public exponent
-x = elgamal.keygen()
-h = elgamal.public_exp(x)
+sKey = elgamal.keygen()
+h = elgamal.public_exp(sKey)
 
 jsonData = {"client": nickname,"publicKey": h}
 jsonDB.write_json(jsonData)
+
+waitingSignature = input("Please turn on two clients and then type y: ")
+
+#connect to the server
+client.connect(('127.0.0.1', 55555))
 
 def receive():
     while True:
         try:
             message = client.recv(1024).decode('utf-8')
+
             if message == "NICK":
+
                 client.send(nickname.encode('utf-8'))
+
             else:
                 # Decryption
                 print(message)
@@ -30,12 +36,23 @@ def receive():
             break
 
 def write():
+
     while True:
-        message = input("")
-        c1,c2,signature = elgamal.encrypt_signed(message, h)
-        messageFormatted = f'{nickname}: {message}'
-        # Encryption
-        client.send(messageFormatted.encode('utf-8'))
+
+        targetPubKey = jsonDB.getPublicKey(nickname)
+
+        print(targetPubKey)
+
+        plainMessage = input("")
+
+        c1,c2,signature = elgamal.encrypt_signed(plainMessage, targetPubKey)
+
+        sendMessage = str(c1) + " " + str(c2) + " " + str(signature)
+
+        print(f'{nickname} > {plainMessage}')
+
+        client.send(sendMessage.encode('utf-8'))
+
 
 receive_thread  = threading.Thread(target=receive)
 receive_thread.start()

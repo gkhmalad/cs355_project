@@ -4,6 +4,7 @@ import jsonDB
 
 jsonDB.initDB()
 
+
 host = '127.0.0.1' #localhost
 port = 55555
 
@@ -15,6 +16,7 @@ server.listen()
 
 clients = []
 nicknames = []
+
 
 # Message sending
 def broadcast(message):
@@ -28,6 +30,7 @@ def handle(client):
         try:
             message = client.recv(1024)
             broadcast(message)
+            
         except:
             index = clients.index(client)
             clients.remove(client)

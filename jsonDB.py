@@ -1,5 +1,17 @@
 import json
 
+def getPublicKey(requesterName, filename='./database.json'):
+
+	json_data=open(filename)
+	data=json.load(json_data)
+	json_data.close()
+
+	for client in data['publicKeys']:
+
+		if client['client'] != requesterName:
+
+			return client['publicKey']
+
 def initDB(filename='./database.json'):
 
 	data = {"publicKeys":[]}
