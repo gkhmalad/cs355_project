@@ -102,5 +102,5 @@ def signature_validator(c1, c2, signature, secretKey):
 
 
 
-if __name__=="__main__":
-    main()
+# if __name__=="__main__":
+#     main()
