@@ -1,4 +1,3 @@
-from io import RawIOBase
 import os
 import binascii
 import hashlib
