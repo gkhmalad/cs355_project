@@ -1,11 +1,19 @@
 import socket
 import threading
 import elgamal
+import jsonDB
 
 nickname = input("Nickname: ")
 client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 #connect to the server
 client.connect(('127.0.0.1', 55555))
+
+# Client's key and public exponent
+x = elgamal.keygen()
+h = elgamal.public_exp(x)
+
+jsonData = {"client": nickname,"publicKey": h}
+jsonDB.write_json(jsonData)
 
 def receive():
     while True:
@@ -23,9 +31,11 @@ def receive():
 
 def write():
     while True:
-        message = f'{nickname}: {input("")}'
+        message = input("")
+        c1,c2,signature = elgamal.encrypt_signed(message, h)
+        messageFormatted = f'{nickname}: {message}'
         # Encryption
-        client.send(message.encode('utf-8'))
+        client.send(messageFormatted.encode('utf-8'))
 
 receive_thread  = threading.Thread(target=receive)
 receive_thread.start()

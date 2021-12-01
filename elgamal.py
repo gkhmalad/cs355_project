@@ -8,6 +8,7 @@ p = 0xFFFFFFFFFFFFFFFFC90FDAA22168C234C4C6628B80DC1CD129024E088A67CC74020BBEA63B
 
 g = 2
 
+
 # Returns a 128 bit random key
 def keygen():
     return int(binascii.hexlify(os.urandom(128)), base=16)
@@ -50,9 +51,13 @@ def decrypt(c1, c2, x):
 
     return m
 
+def public_exp(key):
+    return pow(g, key, p)
+
 def sign(sharedSecret, cipher):
 
     return hmac.new(str(sharedSecret).encode(), str(cipher).encode(), hashlib.sha3_256).hexdigest()
+
 
 # def main():
 #     print("\n========================================================")
