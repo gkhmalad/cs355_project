@@ -54,37 +54,37 @@ def sign(sharedSecret, cipher):
 
     return hmac.new(str(sharedSecret).encode(), str(cipher).encode(), hashlib.sha3_256).hexdigest()
 
-def main():
-    print("\n========================================================")
-    print("Simulating a message exchange between Alice and Bob")
-    print("Bob sends an encrypted message to Alice to decrypt")
-    print("========================================================\n")
+# def main():
+#     print("\n========================================================")
+#     print("Simulating a message exchange between Alice and Bob")
+#     print("Bob sends an encrypted message to Alice to decrypt")
+#     print("========================================================\n")
 
-    # Alice generates a private key 'x' and a private key 'h'
-    x = keygen()
-    h = pow(g, x, p)
+#     # Alice generates a private key 'x' and a private key 'h'
+#     x = keygen()
+#     h = pow(g, x, p)
 
-    print("Alice's private key:\n" + str(x))
-    print()
-    print("Alice's public exponent:\n" + str(h))
+#     print("Alice's private key:\n" + str(x))
+#     print()
+#     print("Alice's public exponent:\n" + str(h))
 
-    # Bob inputs a message, and encrypts it to send to alice
-    message = input("\nEnter message: ")
-    c1, c2, signature = encrypt_signed(message, h)
+#     # Bob inputs a message, and encrypts it to send to alice
+#     message = input("\nEnter message: ")
+#     c1, c2, signature = encrypt_signed(message, h)
 
-    print("\nBob's c1:\n" + str(c1))
-    print()
-    print("Bob's c2:\n" + str(c2))
-    print()
-    print("Message Signature: " + str(signature))
+#     print("\nBob's c1:\n" + str(c1))
+#     print()
+#     print("Bob's c2:\n" + str(c2))
+#     print()
+#     print("Message Signature: " + str(signature))
 
-    # Alice receives c1 and c2 and decrypts them with her secret key
-    m = decrypt(c1, c2, x)
+#     # Alice receives c1 and c2 and decrypts them with her secret key
+#     m = decrypt(c1, c2, x)
 
-    print("\nAlice's received message after decryption:\n" + m)
-    print("\nComparing the inputted and outputted messages: " + str(m == message))
+#     print("\nAlice's received message after decryption:\n" + m)
+#     print("\nComparing the inputted and outputted messages: " + str(m == message))
 
 
 
-if __name__=="__main__":
-    main()
+# if __name__=="__main__":
+#     main()
