@@ -16,5 +16,9 @@ Implementation of Diffie-hellman
 https://github.com/amiralis/pyDH/blob/master/pyDH/pyDH.py
 
 El Gamal Implementation
+https://en.wikipedia.org/wiki/ElGamal_encryption
 https://www.codespeedy.com/elgamal-encryption-algorithm-in-python/
 https://www.geeksforgeeks.org/elgamal-encryption-algorithm/
+
+HMAC Implementation
+https://docs.python.org/3/library/hashlib.html
