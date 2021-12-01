@@ -8,7 +8,7 @@ g = 2
 # Generating a key 128 or 80
 def keygen():
 
-    return int(binascii.hexlify(os.urandom(32)), base=16)
+    return int(binascii.hexlify(os.urandom(128)), base=16)
 
 # Creating a public exponent
 def public_exponent(secretKey, p, g):
