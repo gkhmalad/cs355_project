@@ -29,7 +29,17 @@ def receive():
 
             else:
                 # Decryption
-                print(message)
+                cipherArray = message.split(" ")
+                if(cipherArray[1] != nickname):
+                    if(cipherArray[0] == "CHATMSG" and len(cipherArray) == 5):
+                        c1 = int(cipherArray[2])
+                        c2 = int(cipherArray[3])
+                        signature = cipherArray[4]
+                        sender = cipherArray[1]
+                        plainmsg = f'{sender} > {elgamal.decrypt(c1,c2,sKey)}' 
+                        print(plainmsg)
+                    else:
+                        print(message)
         except:
             print("ERROR")
             client.close()
@@ -41,13 +51,11 @@ def write():
 
         targetPubKey = jsonDB.getPublicKey(nickname)
 
-        print(targetPubKey)
-
         plainMessage = input("")
 
         c1,c2,signature = elgamal.encrypt_signed(plainMessage, targetPubKey)
 
-        sendMessage = str(c1) + " " + str(c2) + " " + str(signature)
+        sendMessage = "CHATMSG" + " " + nickname + " " + str(c1) + " " + str(c2) + " " + str(signature)
 
         print(f'{nickname} > {plainMessage}')
 

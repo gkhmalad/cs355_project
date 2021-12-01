@@ -65,7 +65,7 @@ def sign(sharedSecret, cipher):
 #     print("Bob sends an encrypted message to Alice to decrypt")
 #     print("========================================================\n")
 
-#     # Alice generates a private key 'x' and a private key 'h'
+#     # Alice generates a private key 'x' and a public key 'h'
 #     x = keygen()
 #     h = pow(g, x, p)
 
