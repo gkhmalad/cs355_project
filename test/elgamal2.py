@@ -19,18 +19,31 @@ h = pow(g, x, p)
 """
     ENCRYPTION
 """
-# Custom message and its binary counterpart
+# Custom message and its hex counterpart
 msg = input("Enter the message: ")
-binaryMSG = ''.join(format(ord(i), '08b') for i in msg)
+hexMSG = msg.encode('utf-8').hex()
 
 # Secret Key Bob
 y = int(binascii.hexlify(os.urandom(128)), base=16)
 
-# Shared Secret
+# Shared Secret Bob
 s = pow(h,y,p)
 
 c1 = pow(g, y, p)
-c2  = binaryMSG * s
+c2  = pow((int(hexMSG, 16) * s), 1, p)
 
 print(c1)
-# print(c2)
+print(c2)
+
+"""
+    DECRYPTION
+"""
+# Given parameters are only c1 and c2
+# Alice calculates shared secret
+sAlice = pow(c1, x, p)
+
+sInverse = pow(sAlice, -1, p)
+
+m = pow((c2 * sInverse), 1, p)
+
+print(bytes.fromhex(hex(m)[2:]).decode('utf-8'))
