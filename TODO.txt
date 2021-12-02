@@ -1,8 +1,0 @@
-Transfer the encryption to single element (no array)
-
-Do not send the digest for direct comparison
-    calculate f(digest) which if manipulated by the other party with their own digest returns identifiable equivalence of the digests
-
-MAC or Signature (hash of the ciphertext)
-
-Check libraries to generate large primes for p

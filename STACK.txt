@@ -1,2 +1,0 @@
-Primary Language:    Python
-Hash Function:       SHA3 (from the "hashlib" library for python)
