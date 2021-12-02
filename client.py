@@ -1,14 +1,14 @@
 import socket
 import threading
-import elgamal
+import elgamalChat
 import jsonDB
 
 nickname = input("Nickname: ")
 client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
 # Client's key and public exponent
-sKey = elgamal.keygen()
-h = elgamal.public_exp(sKey)
+sKey = elgamalChat.keygen()
+h = elgamalChat.public_exp(sKey)
 
 jsonData = {"client": nickname,"publicKey": h}
 jsonDB.write_json(jsonData)
@@ -37,9 +37,9 @@ def receive():
                         signature = cipherArray[4]
                         sender = cipherArray[1]
 
-                        if(elgamal.signature_validator(c1,c2,signature, sKey)):
+                        if(elgamalChat.signature_validator(c1,c2,signature, sKey)):
                             print('message validated!')
-                            plainmsg = f'{sender} > {elgamal.decrypt(c1,c2,sKey)}' 
+                            plainmsg = f'{sender} > {elgamalChat.decrypt(c1,c2,sKey)}' 
                             print(plainmsg)
                         else:
                             print("Message has been tampered with!")
@@ -58,7 +58,7 @@ def write():
 
         plainMessage = input("")
 
-        c1,c2,signature = elgamal.encrypt_signed(plainMessage, targetPubKey)
+        c1,c2,signature = elgamalChat.encrypt_signed(plainMessage, targetPubKey)
 
         sendMessage = "CHATMSG" + " " + nickname + " " + str(c1) + " " + str(c2) + " " + str(signature)
 
