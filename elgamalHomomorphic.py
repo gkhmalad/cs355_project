@@ -100,7 +100,7 @@ def main():
 
     print(bobsMSG)
 
-    ## Alice repeats the same process for herself to determine if their values are the same as well
+    ## Alice repeats the same process for herself to determine if their values are the same as wellz
 
 
 
