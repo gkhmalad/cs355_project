@@ -1,4 +1,9 @@
 import hashlib
+import password_file_generator
+
+def file_gen():
+    password_file_generator.password_gen()
+
 
 # Generates a digest of the passwords file
 def file_digest(fpath):
