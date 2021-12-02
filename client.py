@@ -38,7 +38,6 @@ def receive():
                         sender = cipherArray[1]
 
                         if(elgamalChat.signature_validator(c1,c2,signature, sKey)):
-                            print('message validated!')
                             plainmsg = f'{sender} > {elgamalChat.decrypt(c1,c2,sKey)}' 
                             print(plainmsg)
                         else:

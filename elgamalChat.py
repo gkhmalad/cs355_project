@@ -48,9 +48,9 @@ def decrypt(c1, c2, x):
     mInt = pow((c2 * sInv), 1, p)
 
     # Transforming the initial message back to its original form
-    # m = bytes.fromhex(hex(mInt)[2:]).decode('utf-8')
+    m = bytes.fromhex(hex(mInt)[2:]).decode('utf-8')
 
-    return mInt
+    return m
 
 def public_exp(key):
     return pow(g, key, p)
