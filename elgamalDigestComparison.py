@@ -16,44 +16,23 @@ def keygen():
 
 # Elgamal encryption scheme
 def encrypt_signed(msg, h):
-    # Create a hexadecimal value from the message
+
     hexMSG = msg.encode('utf-8').hex()
-
-    # Create a random y
     y = keygen()
-
-    # Calculate shared secret s
     s = pow(h,y,p)
-
-    # Calculate c1 and c2
     c1 = pow(g, y, p)
-
-    # Transforms the hex value into an integer value for multiplication with the int value s
     c2  = pow((int(hexMSG, 16) * s), 1, p)
-
     signature = sign(s,c2)
 
     return c1,c2,signature
 
-# Decryption algorithm for said ciphertext
 def decrypt(c1, c2, x):
 
-    # Calculating shared secret from c1
     s = pow(c1, x, p)
-
-    # Calculating modular inverse of s [Python 3.8+]
     sInv = pow(s, -1, p)
-
-    # Calculating the initial message as integer
     mInt = pow((c2 * sInv), 1, p)
 
-    # Transforming the initial message back to its original form
-    # m = bytes.fromhex(hex(mInt)[2:]).decode('utf-8')
-
     return mInt
-
-def public_exp(key):
-    return pow(g, key, p)
 
 def sign(sharedSecret, cipher):
 
@@ -71,7 +50,7 @@ def signature_validator(c1, c2, signature, secretKey):
 def main():
     print("\n========================================================")
     print("Simulating a message exchange between Alice and Bob")
-    print("Bob sends an encrypted message to Alice to decrypt")
+    print("Bob and alice want to be sure they have the same value without revealing even the digest of the value")
     print("========================================================\n")
 
     # Alice generates a private key 'x' and a public key 'h'
@@ -82,19 +61,26 @@ def main():
     y = keygen()
     k = pow(g,y,p)
 
-
     # Bob inputs a message, and encrypts it to send to alice
     valueAlice = digester.file_digest("./passwords.txt")
     valueBob = digester.file_digest("./passwords.txt")
 
+    # Encrypting both sides
     b1,b2,signatureB = encrypt_signed(valueBob,k)
     a1,a2,signatureA = encrypt_signed(valueAlice, k)
 
+    # Homomorphic division with modular inverse
     divVal1 = (b1*pow(a1, -1, p))
     divVal2 = (b2*pow(a2, -1, p))
 
     bobsMSG = decrypt(divVal1,divVal2,y)
-    print(bobsMSG)
+    
+    if(bobsMSG == 1):
+        print("The two values are the same!")
+    else:
+        print("The two values are NOT the same!")
+
+    # This is repeated for Alice as well!
 
 
 if __name__=="__main__":

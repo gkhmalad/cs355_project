@@ -16,18 +16,10 @@ def keygen():
 # Elgamal encryption scheme message is integer
 def encrypt_signed(msg, h):
 
-    # Create a random y
     y = keygen()
-
-    # Calculate shared secret s
     s = pow(h,y,p)
-
-    # Calculate c1 and c2
     c1 = pow(g, y, p)
-
-    # Transforms the hex value into an integer value for multiplication with the int value s
     c2  = pow((msg * s), 1, p)
-
     signature = sign(s,c2)
 
     return c1,c2,signature
@@ -35,23 +27,12 @@ def encrypt_signed(msg, h):
 # Decryption algorithm for said ciphertext
 def decrypt(c1, c2, x):
 
-    # Calculating shared secret from c1
+
     s = pow(c1, x, p)
-
-    # Calculating modular inverse of s [Python 3.8+]
     sInv = pow(s, -1, p)
-
-    # Calculating the initial message as integer
     mInt = pow((c2 * sInv), 1, p)
 
-    # Transforming the initial message back to its original form
-
     return mInt
-
-
-
-def public_exp(key):
-    return pow(g, key, p)
 
 def sign(sharedSecret, cipher):
 
